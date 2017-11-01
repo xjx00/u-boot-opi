@@ -10,3 +10,13 @@ git clone git://git.denx.de/u-boot.git
 cd u-boot
 make orangepi_zero_defconfig
 make V=s -j8 ARCH=arm CROSS_COMPILE=$CROSS_COMPILE
+mkdir build
+cp u-boot-sunxi-with-spl.bin build/
+export BUILD_NR="$(date '+%Y%m%d-%H%M%S')"
+# deploy to GitHub releases
+export GIT_TAG=v$BUILD_NR
+export GIT_RELTEXT="Auto-released by [Travis-CI build #$TRAVIS_BUILD_NUMBER](https://travis-ci.org/$TRAVIS_REPO_SLUG/builds/$TRAVIS_BUILD_ID)"
+curl -sSL https://github.com/tcnksm/ghr/releases/download/v0.5.4/ghr_v0.5.4_linux_amd64.zip > ghr.zip
+unzip ghr.zip
+./ghr --version
+./ghr --debug -u xjx00 -b "$GIT_RELTEXT" $GIT_TAG build/
