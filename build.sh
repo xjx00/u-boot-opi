@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo apt-get update && sudo apt-get install -y bc build-essential curl git-core libncurses5-dev module-init-tools
+sudo apt-get update && sudo apt-get install -y bc build-essential curl git-core libncurses5-dev module-init-tools swig libpython-dev
 
 # Install crosscompile toolchain for ARM
 mkdir -p /opt/linaro
