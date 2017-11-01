@@ -10,6 +10,7 @@ git clone git://git.denx.de/u-boot.git
 cd u-boot
 make orangepi_zero_defconfig
 make V=s -j8 ARCH=arm CROSS_COMPILE=$CROSS_COMPILE
+ls -l
 mkdir build
 cp u-boot-sunxi-with-spl.bin build/
 export BUILD_NR="$(date '+%Y%m%d-%H%M%S')"
